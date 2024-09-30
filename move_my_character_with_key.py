@@ -3,7 +3,7 @@ from pico2d import *
 open_canvas()
 
 character = load_image('dragon.png')
-# background = load_image('TUK_GROUND.png')
+background = load_image('TUK_GROUND.png')
 
 def handle_events():
     global running, move, dir
@@ -82,7 +82,7 @@ frame = 0
 dir = 0
 while running:
     clear_canvas()
-    # TUK_GROUND.draw(400, 300)
+    background.draw(400, 300)
     if move:
         move_dragon()
     else:
