@@ -2,7 +2,8 @@ from pico2d import *
 
 open_canvas()
 
-character = load_image('dragon.png')
+character_idle = load_image('Unarmed_Idle_full.png')
+character_walk = load_image('Unarmed_Walk_full.png')
 background = load_image('TUK_GROUND.png')
 
 def handle_events():
@@ -48,13 +49,13 @@ def moveY():
     else:
         if y > 50: y-=10
 def move_right():
-    character.clip_draw(frame * 192, 192, 192, 192, x, y, 200, 200)
+    character_walk.clip_draw(frame * 64, 64, 64, 64, x, y, 200, 200)
 def move_left():
-    character.clip_draw(frame * 192, 384, 192, 192, x, y, 200, 200)
+    character_walk.clip_draw(frame * 64, 128, 64, 64, x, y, 200, 200)
 def move_up():
-    character.clip_draw(frame * 192, 0, 192, 192, x, y, 200, 200)
+    character_walk.clip_draw(frame * 64, 0, 64, 64, x, y, 200, 200)
 def move_bottom():
-    character.clip_draw(frame * 192, 576, 192, 192, x, y, 200, 200)
+    character_walk.clip_draw(frame * 64, 196, 64, 64, x, y, 200, 200)
 def move_dragon():
     if dir == 0:
          moveX()
@@ -70,15 +71,18 @@ def move_dragon():
         move_bottom()
 def stand_dragon():
     global frame
-    frame = 1
     if dir == 0:
-         move_right()
+        character_idle.clip_draw(frame * 64, 64, 64, 64, x, y, 200, 200)
+        frame = (frame + 1) % 5
     elif dir == 1:
-        move_left()
+        character_idle.clip_draw(frame * 64, 128, 64, 64, x, y, 200, 200)
+        frame = (frame + 1) % 5
     elif dir == 2:
-        move_up()
+        character_idle.clip_draw(frame * 64, 0, 64, 64, x, y, 200, 200)
+        frame = (frame + 1) % 4
     elif dir == 3:
-        move_bottom()
+        character_idle.clip_draw(frame * 64, 196, 64, 64, x, y, 200, 200)
+        frame = (frame + 1) % 5
 
    
 
@@ -102,11 +106,11 @@ while running:
     background.draw(400, 300)
     if move:
         move_dragon()
+        frame = (frame + 1) % 6
     else:
         stand_dragon()
     update_canvas()
     handle_events()
-    frame = (frame + 1) % 3
     delay(0.1)
 
 close_canvas()
