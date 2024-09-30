@@ -54,7 +54,16 @@ def move_dragon():
     elif dir == 3:
         move_bottom()
 def stand_dragon():
-    pass
+    global frame
+    frame = 1
+    if dir == 0:
+         move_right()
+    elif dir == 1:
+        move_left()
+    elif dir == 2:
+        move_up()
+    elif dir == 3:
+        move_bottom()
 
 
 
