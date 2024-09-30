@@ -35,23 +35,38 @@ def handle_events():
                 move=False
             elif event.key == SDLK_DOWN:
                 move=False
-
+def moveX():
+    global x
+    if dir == 0:
+        x+=10
+    else:
+        x-=10
+def moveY():
+    global y
+    if dir == 2:
+        y+=10
+    else:
+        y-=10
 def move_right():
-    character.clip_draw(frame * 192, 192, 192, 192, x, 130, 200, 200)
+    character.clip_draw(frame * 192, 192, 192, 192, x, y, 200, 200)
 def move_left():
-    character.clip_draw(frame * 192, 384, 192, 192, x, 130, 200, 200)
+    character.clip_draw(frame * 192, 384, 192, 192, x, y, 200, 200)
 def move_up():
-    character.clip_draw(frame * 192, 0, 192, 192, x, 130, 200, 200)
+    character.clip_draw(frame * 192, 0, 192, 192, x, y, 200, 200)
 def move_bottom():
-    character.clip_draw(frame * 192, 576, 192, 192, x, 130, 200, 200)
+    character.clip_draw(frame * 192, 576, 192, 192, x, y, 200, 200)
 def move_dragon():
     if dir == 0:
+         moveX()
          move_right()
     elif dir == 1:
+        moveX()
         move_left()
     elif dir == 2:
+        moveY()
         move_up()
     elif dir == 3:
+        moveY()
         move_bottom()
 def stand_dragon():
     global frame
@@ -65,6 +80,7 @@ def stand_dragon():
     elif dir == 3:
         move_bottom()
 
+   
 
 
 
@@ -78,6 +94,7 @@ def stand_dragon():
 running = True
 move = False
 x = 800 // 2
+y = 600 // 2
 frame = 0
 dir = 0
 while running:
