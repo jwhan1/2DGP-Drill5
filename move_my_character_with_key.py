@@ -38,15 +38,15 @@ def handle_events():
 def moveX():
     global x
     if dir == 0:
-        x+=10
+        if x < 750: x+=10
     else:
-        x-=10
+        if x > 50: x-=10
 def moveY():
     global y
     if dir == 2:
-        y+=10
+        if y < 550: y+=10
     else:
-        y-=10
+        if y > 50: y-=10
 def move_right():
     character.clip_draw(frame * 192, 192, 192, 192, x, y, 200, 200)
 def move_left():
