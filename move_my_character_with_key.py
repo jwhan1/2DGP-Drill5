@@ -6,7 +6,7 @@ character = load_image('dragon.png')
 # background = load_image('TUK_GROUND.png')
 
 def handle_events():
-    global running
+    global running, move, dir
     events = get_events()
     for event in events:
         if event.type == SDL_QUIT:
@@ -15,31 +15,35 @@ def handle_events():
             running = False
         elif event.type == SDL_KEYDOWN:
             if event.key == SDLK_RIGHT:
-               pass
+                move=True
+                dir = 0
             elif event.key == SDLK_LEFT:
-                pass
+                move=True
+                dir = 1
             elif event.key == SDLK_UP:
-                pass
+                move=True
+                dir = 2
             elif event.key == SDLK_DOWN:
-                pass
+                move=True
+                dir = 3
         elif event.type == SDL_KEYUP:
             if event.key == SDLK_RIGHT:
-                pass
+                move=False
             elif event.key == SDLK_LEFT:
-                pass
+                move=False
             elif event.key == SDLK_UP:
-                pass
+                move=False
             elif event.key == SDLK_DOWN:
-                pass
+                move=False
 
 def move_right():
-    pass
+    character.clip_draw(frame * 192, 192, 192, 192, x, 130, 200, 200)
 def move_left():
-    pass
+    character.clip_draw(frame * 192, 384, 192, 192, x, 130, 200, 200)
 def move_up():
-    pass
+    character.clip_draw(frame * 192, 0, 192, 192, x, 130, 200, 200)
 def move_bottom():
-    pass
+    character.clip_draw(frame * 192, 576, 192, 192, x, 130, 200, 200)
 def move_dragon():
     if dir == 0:
          move_right()
